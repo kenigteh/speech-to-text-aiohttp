@@ -1,7 +1,7 @@
 from .exception import exception_middleware
 
 MIDDLEWARES = [
-    exception_middleware,
+    exception_middleware
 ]
 
 __all__ = [
