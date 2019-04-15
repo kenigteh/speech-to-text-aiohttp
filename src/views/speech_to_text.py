@@ -1,10 +1,20 @@
 from aiohttp import web
 from aiohttp.web_request import FileField
 from integrations import google_stt
+import jwt
+from constants import public_key
 
 
 class SpeechToTextView(web.View):
     async def check_req(self, data):
+        try:
+            encoded = data['key']
+            jwt.decode(encoded, public_key, algorithms='RS256')
+        except Exception as e:
+            print(e)
+            data = {"error": "Secret key is incorrect!"}
+            return 400, data
+
         if 'audio_file' not in data:
             data = {"error": "File key not correctly transmitted."}
             return 400, data

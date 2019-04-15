@@ -5,3 +5,6 @@ REQ_DATA = {
     "encoding": "FLAC",
     "languageCode": "ru-RU"
 }
+
+with open("files/public_key.txt") as f:
+    public_key = f.read()
