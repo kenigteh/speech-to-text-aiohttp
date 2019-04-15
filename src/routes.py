@@ -1,5 +1,10 @@
 import views
+from aiohttp import web
 
 
 def setup_routes(app):
-    app.router.add_get(r'/health', views.health_view)
+    app.add_routes(
+        [
+            web.view("/upload_audio", views.SpeechToTextView)
+        ]
+    )

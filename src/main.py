@@ -8,7 +8,7 @@ from routes import setup_routes
 from services import SERVICES
 
 
-async def init():
+async def init_func():
     app = web.Application(middlewares=MIDDLEWARES)
     app.cleanup_ctx.extend(SERVICES)
     setup_routes(app)
@@ -18,4 +18,4 @@ async def init():
 logging.basicConfig(level=(logging.INFO if not settings.DEBUG else logging.DEBUG))
 
 if __name__ == '__main__':
-    web.run_app(init(), port=8085)
+    web.run_app(init_func(), port=8085)

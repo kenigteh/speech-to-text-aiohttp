@@ -1,5 +1,5 @@
-from .health import health_view
+from .speech_to_text import SpeechToTextView
 
 __all__ = [
-    'health_view',
+    'SpeechToTextView',
 ]
