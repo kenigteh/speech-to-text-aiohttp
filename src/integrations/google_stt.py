@@ -1,6 +1,7 @@
 import base64
 import aiohttp
 import constants
+
 REQ_DATA = constants.REQ_DATA
 
 
@@ -24,7 +25,9 @@ async def create_rec(audio_content):
 
 async def send_req(data):
     async with aiohttp.ClientSession() as session:
-        async with session.post(constants.url, json=data, params={"key": constants.key}) as resp:
+        async with session.post(url=constants.url,
+                                json=data,
+                                params={"key": constants.key}) as resp:
             return await resp.json()
 
 
@@ -32,7 +35,6 @@ async def speech_to_text(audio_file):
     data = await encode_audio(audio_file)
     req_data = await create_rec(data)
     ans = await send_req(req_data)
-    print(ans)
     if 'error' in ans:
         raise Exception(ans['error']['message'])
     return ans['results'][0]['alternatives'][0]['transcript']

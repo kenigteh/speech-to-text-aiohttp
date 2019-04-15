@@ -15,7 +15,7 @@ async def init_func():
     return app
 
 
-logging.basicConfig(level=(logging.INFO if not settings.DEBUG else logging.DEBUG))
+logging.basicConfig(level=(logging.DEBUG if settings.DEBUG else logging.INFO))
 
 if __name__ == '__main__':
     web.run_app(init_func(), port=8085)
